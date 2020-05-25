@@ -1,11 +1,6 @@
 """Main file."""
-import keyboard
-from maze.model.classmymaze import MyMaze
-from maze.model.classhero import MyHero
-from maze.model.classposition import Position
+
+from maze.model.mymaze import MyMaze
 
 MAZE = MyMaze()
-MyHero.init_hero()
-MyMaze.init_guardian()
-MyMaze.init_objects()
-MAZE.display_maze()
+MAZE.__init__()
