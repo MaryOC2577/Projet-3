@@ -1,6 +1,6 @@
 """Class position."""
 
-from maze.config import LEVEL1
+from maze.config import CURRENTMAZE
 
 
 class Position:
@@ -9,7 +9,7 @@ class Position:
     def __init__(self):
         """Constructor."""
 
-    def ObjectPosition(typeO):
+    def ObjectPosition(search_object):
         """Determine position of an object.
         S : start
         F : finish
@@ -19,22 +19,22 @@ class Position:
         T : tube
         E : ether
         """
-        with open(LEVEL1, "r") as file:
+        with open(CURRENTMAZE, "r") as file:
             listfile = file.read().splitlines()
 
         for X in range(0, 15):
             for Y in range(0, 15):
-                if typeO == "start" and listfile[X][Y] == "S":
+                if search_object == "start" and listfile[X][Y] == "S":
                     return (X, Y)
-                if typeO == "finish" and listfile[X][Y] == "F":
+                if search_object == "finish" and listfile[X][Y] == "F":
                     return (X, Y)
-                if typeO == "hero" and listfile[X][Y] == "H":
+                if search_object == "hero" and listfile[X][Y] == "H":
                     return (X, Y)
-                if typeO == "guardian" and listfile[X][Y] == "G":
+                if search_object == "guardian" and listfile[X][Y] == "G":
                     return (X, Y)
-                if typeO == "needle" and listfile[X][Y] == "N":
+                if search_object == "needle" and listfile[X][Y] == "N":
                     return (X, Y)
-                if typeO == "tube" and listfile[X][Y] == "T":
+                if search_object == "tube" and listfile[X][Y] == "T":
                     return (X, Y)
-                if typeO == "ether" and listfile[X][Y] == "E":
+                if search_object == "ether" and listfile[X][Y] == "E":
                     return (X, Y)
