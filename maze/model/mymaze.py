@@ -16,9 +16,16 @@ class MyMaze:
         # Initial position of the guardian, always the same (8,13)
         guardian_position = (8, 13)
         # positions of tube, ether, needle.
+        tube_position = self.init_tube()
+        needle_position = self.init_needle()
+        ether_position = self.init_ether()
         # afficher position de tous les objets
         print("Hero is at :", hero_position)
         print("Guardian is at :", guardian_position)
+        print("Tube is at :", tube_position)
+        print("Needle is at :", needle_position)
+        print("Ether is at :", ether_position)
+        print("¨Paths :", self.check_path())
         # display the maze
 
     def display_maze(self):
@@ -39,7 +46,7 @@ class MyMaze:
                     list_path.append((nbline, nbchar))
         return list_path
 
-    def checkwall():
+    def check_wall(self):
         """ liste contenant l'emplacement des murs."""
         with open(LEVEL1, "r") as file:
             listfor = file.read().splitlines()
@@ -52,26 +59,21 @@ class MyMaze:
 
     def init_needle(self):
         """Position of the needle."""
-        maze_paths = MyMaze.check_path()
-        needle_possition = (randint(0, 13), randint(0, 13))
-        while needle_possition not in maze_paths:
+        needle_possition = ()
+        while needle_possition not in self.check_path():
             needle_possition = (randint(0, 13), randint(0, 13))
         return needle_possition
 
-    def init_objects(self):
-        """Random position of :
-        Needle = N
-        Tube = T
-        Ether = E
-        """
-        needle_position = (randint(0, 13), randint(0, 13))
-        tube_position = (randint(0, 13), randint(0, 13))
-        ether_position = (randint(0, 13), randint(0, 13))
-        maze_paths = MyMaze.check_path()
-
-        while needle_position and tube_position and ether_position not in maze_paths:
-            needle_position = (randint(0, 13), randint(0, 13))
+    def init_tube(self):
+        """Position of the tube."""
+        tube_position = ()
+        while tube_position not in self.check_path():
             tube_position = (randint(0, 13), randint(0, 13))
-            ether_position = (randint(0, 13), randint(0, 13))
+        return tube_position
 
-        return needle_position, tube_position, ether_position
+    def init_ether(self):
+        """Position of the ether."""
+        ether_position = ()
+        while ether_position not in self.check_path():
+            ether_position = (randint(0, 13), randint(0, 13))
+        return ether_position
