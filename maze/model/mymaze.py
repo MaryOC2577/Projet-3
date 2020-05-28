@@ -20,13 +20,21 @@ class MyMaze:
         needle_position = self.init_needle()
         ether_position = self.init_ether()
         # afficher les positions des objets
-        print(hero_position)
-        print(guardian_position)
-        print(tube_position)
-        print(needle_position)
-        print(ether_position)
+        print("Hero at :", hero_position)
+        print("Guardian at :", guardian_position)
+        print("Tube at :", tube_position)
+        print("Needle at :", needle_position)
+        print("Ether at :", ether_position)
         # Init the maze
-        self.display_maze()
+        self.display_maze(
+            self.start_maze(
+                hero_position,
+                guardian_position,
+                tube_position,
+                needle_position,
+                ether_position,
+            )
+        )
 
     def start_maze(
         self,
@@ -45,24 +53,23 @@ class MyMaze:
             for line in range(0, 15):
                 for char in range(0, 15):
                     if line == hero_position[0] and char == hero_position[1]:
-                        current_maze += "H"
-                    if line == guardian_position[0] and char == guardian_position[1]:
+                        current_line += "H"
+                    elif line == guardian_position[0] and char == guardian_position[1]:
                         current_line += "G"
-                    if line == tube_position[0] and char == tube_position[1]:
+                    elif line == tube_position[0] and char == tube_position[1]:
                         current_line += "T"
-                    if line == needle_position[0] and char == needle_position[1]:
-                        current_maze += "N"
-                    if line == ether_position[0] and char == ether_position[1]:
+                    elif line == needle_position[0] and char == needle_position[1]:
+                        current_line += "N"
+                    elif line == ether_position[0] and char == ether_position[1]:
                         current_line += "E"
                     else:
                         current_line += current_maze[line][char]
                 current_mazetwo.append(current_line)
+                current_line = ""
         return current_mazetwo
 
-    def display_maze(self):
+    def display_maze(self, current_maze):
         """Display the maze at current state."""
-        with LEVEL1.open("r") as file:
-            current_maze = file.read().splitlines()
         for line in range(0, 15):
             for char in range(0, 15):
                 print(" ", current_maze[line][char], end="")
