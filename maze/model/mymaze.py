@@ -8,6 +8,8 @@ from maze.model.myhero import MyHero
 class MyMaze:
     """Create the maze."""
 
+    current_mazetwo = []
+
     def __init__(self):
         """Constructor of MyMaze."""
         # Return position of the hero, always the same "START"
@@ -49,7 +51,7 @@ class MyMaze:
         with LEVEL1.open("r") as file:
             current_maze = file.read().splitlines()
             current_line = ""
-            current_mazetwo = []
+            # current_mazetwo = []
             for line in range(0, 15):
                 for char in range(0, 15):
                     if line == hero_position[0] and char == hero_position[1]:
@@ -64,9 +66,9 @@ class MyMaze:
                         current_line += "E"
                     else:
                         current_line += current_maze[line][char]
-                current_mazetwo.append(current_line)
+                self.current_mazetwo.append(current_line)
                 current_line = ""
-        return current_mazetwo
+        return self.current_mazetwo
 
     def display_maze(self, current_maze):
         """Display the maze at current state."""
