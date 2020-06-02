@@ -1,3 +1,8 @@
+"""Controller."""
+
+from maze.model.position import Position
+from maze.model.mymaze import MyMaze
+
 
 class Moves:
     """Control the Hero's movements.
@@ -18,11 +23,15 @@ class Moves:
             print("Hero goes left.")
         elif hero_move == "d":
             print("Hero goes right.")
+            self.hero_right()
 
-    def hero_up(self):
+    def hero_right(self):
         """Hero moves up."""
         # vérifier la position du héro
+        position = Position()
         # vérifier la case adjacente
+        right_case = (position.hero_position()[0], position.hero_position()[1] + 1)
         # si mur le héro ne bouge pas
+        print("Hero can't move")
         # si chemin le héro se déplace sur la case
         # si objet (T, N ,E) objet ajouté dans inventaire + héro se déplace sur la case

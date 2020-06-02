@@ -8,67 +8,18 @@ from maze.model.myhero import MyHero
 class MyMaze:
     """Create the maze."""
 
-    current_mazetwo = []
-
     def __init__(self):
-        """Constructor of MyMaze."""
-        # Return position of the hero, always the same "START"
-        hero = MyHero()
-        hero_position = hero.init_hero()
-        # Initial position of the guardian, always the same (8,13)
-        guardian_position = (8, 13)
-        # positions of tube, ether, needle.
-        tube_position = self.init_tube()
-        needle_position = self.init_needle()
-        ether_position = self.init_ether()
-        # afficher les positions des objets
-        print("Hero at :", hero_position)
-        print("Guardian at :", guardian_position)
-        print("Tube at :", tube_position)
-        print("Needle at :", needle_position)
-        print("Ether at :", ether_position)
-        # Init the maze
-        self.display_maze(
-            self.start_maze(
-                hero_position,
-                guardian_position,
-                tube_position,
-                needle_position,
-                ether_position,
-            )
-        )
+        """Initialize the maze, objects."""
+        self.paths = []
+        self.walls = []
+        self.current_maze = []
+        self.init_file()
+        self.load_maze()
 
-    def start_maze(
-        self,
-        hero_position,
-        guardian_position,
-        tube_position,
-        needle_position,
-        ether_position,
-    ):
-        """Initialization of the maze."""
-        current_maze = []
+    def init_file(self):
+        """Load maze1.txt and save on current_maze."""
         with LEVEL1.open("r") as file:
-            current_maze = file.read().splitlines()
-            current_line = ""
-            # current_mazetwo = []
-            for line in range(0, 15):
-                for char in range(0, 15):
-                    if line == hero_position[0] and char == hero_position[1]:
-                        current_line += "H"
-                    elif line == guardian_position[0] and char == guardian_position[1]:
-                        current_line += "G"
-                    elif line == tube_position[0] and char == tube_position[1]:
-                        current_line += "T"
-                    elif line == needle_position[0] and char == needle_position[1]:
-                        current_line += "N"
-                    elif line == ether_position[0] and char == ether_position[1]:
-                        current_line += "E"
-                    else:
-                        current_line += current_maze[line][char]
-                self.current_mazetwo.append(current_line)
-                current_line = ""
-        return self.current_mazetwo
+            self.current_maze = file.read().splitlines()
 
     def display_maze(self, current_maze):
         """Display the maze at current state."""
@@ -77,27 +28,19 @@ class MyMaze:
                 print(" ", current_maze[line][char], end="")
             print("\n")
 
-    def check_path(self):
+    def set_paths(self):
         """Check empty space, return positions in a list."""
-        with LEVEL1.open("r") as file:
-            listfor = file.read().splitlines()
-        list_path = []
-        for nbline in range(0, 15):
-            for nbchar in range(0, 15):
-                if listfor[nbline][nbchar] == "0":
-                    list_path.append((nbline, nbchar))
-        return list_path
+        for line in range(0, 15):
+            for char in range(0, 15):
+                if self.current_maze[line][char] == "0":
+                    self.paths.append((line, char))
 
-    def check_wall(self):
-        """ liste contenant l'emplacement des murs."""
-        with open(LEVEL1, "r") as file:
-            listfor = file.read().splitlines()
-        listofwall = []
-        for nbline in range(0, 15):
-            for nbchar in range(0, 15):
-                if listfor[nbline][nbchar] == "X":
-                    listofwall.append((nbline, nbchar))
-        return listofwall
+    def set_walls(self):
+        """Content walls positions."""
+        for line in range(0, 15):
+            for char in range(0, 15):
+                if self.current_maze[line][char] == "X":
+                    self.walls.append((line, char))
 
     def init_needle(self):
         """Position of the needle."""
@@ -119,3 +62,27 @@ class MyMaze:
         while ether_position not in self.check_path():
             ether_position = (randint(0, 13), randint(0, 13))
         return ether_position
+
+    def set_items(self):
+        """First position of all items."""
+        temp_line = ""
+        current_mazetwo = []
+        for line in range(0, 15):
+            for char in range(0, 15):
+                if self.current_maze[line][char] == "S":
+                    temp_line += "H"
+                if line == 8 and char == 13:
+                    temp_line += "G"
+                else:
+                    temp_line += self.current_maze[line][char]
+            print("la temp line :", temp_line)
+            current_mazetwo.append(temp_line)
+            temp_line = ""
+        self.current_maze = current_mazetwo
+        print(self.current_maze)
+
+    def load_maze(self):
+        """Load the game."""
+        self.set_walls()
+        self.set_paths()
+        self.set_items()
