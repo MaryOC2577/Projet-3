@@ -85,4 +85,4 @@ class MyMaze:
         self.set_walls()
         self.set_paths()
         self.set_items()
-        self.display_maze()
+        # self.display_maze()

@@ -1,11 +1,6 @@
 """Main file."""
 
-from maze.model.mymaze import MyMaze
-from maze.view.console import CliView
+from maze.application import Software
 
-MAZE = MyMaze()
-VIEW = CliView()
-
-# CONTROLLER = console.Moves()
-# POSITION = Position()
-# CONTROLLER.hero_move()
+application = Software()
+application.run_maze()
