@@ -2,7 +2,6 @@
 
 from random import randint
 from maze.config import LEVEL1
-from maze.model.myhero import MyHero
 
 
 class MyMaze:
@@ -21,11 +20,11 @@ class MyMaze:
         with LEVEL1.open("r") as file:
             self.current_maze = file.read().splitlines()
 
-    def display_maze(self, current_maze):
+    def display_maze(self):
         """Display the maze at current state."""
         for line in range(0, 15):
             for char in range(0, 15):
-                print(" ", current_maze[line][char], end="")
+                print(" ", self.current_maze[line][char], end="")
             print("\n")
 
     def set_paths(self):
@@ -42,47 +41,48 @@ class MyMaze:
                 if self.current_maze[line][char] == "X":
                     self.walls.append((line, char))
 
-    def init_needle(self):
-        """Position of the needle."""
-        needle_possition = ()
-        while needle_possition not in self.check_path():
-            needle_possition = (randint(0, 13), randint(0, 13))
-        return needle_possition
-
-    def init_tube(self):
-        """Position of the tube."""
-        tube_position = ()
-        while tube_position not in self.check_path():
-            tube_position = (randint(0, 13), randint(0, 13))
-        return tube_position
-
-    def init_ether(self):
-        """Position of the ether."""
-        ether_position = ()
-        while ether_position not in self.check_path():
-            ether_position = (randint(0, 13), randint(0, 13))
-        return ether_position
-
     def set_items(self):
         """First position of all items."""
+        tube_position = (-1, -1)
+        needle_position = (-2, -2)
+        ether_position = (-3, -3)
+        while tube_position and needle_position and ether_position not in self.paths:
+            tube_position = (randint(1, 13), randint(1, 13))
+            needle_position = (randint(1, 13), randint(1, 13))
+            ether_position = (randint(1, 13), randint(1, 13))
+        if tube_position == needle_position:
+            tube_position = (randint(1, 13), randint(1, 13))
+            needle_position = (randint(1, 13), randint(1, 13))
+        elif needle_position == ether_position:
+            needle_position = (randint(1, 13), randint(1, 13))
+            ether_position = (randint(1, 13), randint(1, 13))
+        elif ether_position == tube_position:
+            ether_position = (randint(1, 13), randint(1, 13))
+            tube_position = (randint(1, 13), randint(1, 13))
+
         temp_line = ""
         current_mazetwo = []
         for line in range(0, 15):
             for char in range(0, 15):
                 if self.current_maze[line][char] == "S":
                     temp_line += "H"
-                if line == 8 and char == 13:
+                elif line == 8 and char == 13:
                     temp_line += "G"
+                elif line == tube_position[0] and char == tube_position[1]:
+                    temp_line += "T"
+                elif line == needle_position[0] and char == needle_position[1]:
+                    temp_line += "N"
+                elif line == ether_position[0] and char == ether_position[1]:
+                    temp_line += "E"
                 else:
                     temp_line += self.current_maze[line][char]
-            print("la temp line :", temp_line)
             current_mazetwo.append(temp_line)
             temp_line = ""
         self.current_maze = current_mazetwo
-        print(self.current_maze)
 
     def load_maze(self):
         """Load the game."""
         self.set_walls()
         self.set_paths()
         self.set_items()
+        self.display_maze()

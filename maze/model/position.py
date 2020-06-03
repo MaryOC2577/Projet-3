@@ -13,7 +13,7 @@ class Position:
         """Hero position."""
         for line in range(0, 15):
             for char in range(0, 15):
-                if MyMaze.current_mazetwo[line][char] == "H":
+                if MyMaze.current_maze[line][char] == "H":
                     hero_position = (line, char)
                     return hero_position
 

@@ -1,7 +1,6 @@
 """Controller."""
 
 from maze.model.position import Position
-from maze.model.mymaze import MyMaze
 
 
 class Moves:
@@ -30,7 +29,6 @@ class Moves:
         # vérifier la position du héro
         position = Position()
         # vérifier la case adjacente
-        right_case = (position.hero_position()[0], position.hero_position()[1] + 1)
         # si mur le héro ne bouge pas
         print("Hero can't move")
         # si chemin le héro se déplace sur la case
