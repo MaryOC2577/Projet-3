@@ -1,7 +1,5 @@
 """CLI view."""
 
-from maze.model.mymaze import MyMaze
-
 
 class CliView:
     """View in console mode."""

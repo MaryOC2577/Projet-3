@@ -2,6 +2,7 @@
 
 from random import randint
 from maze.config import LEVEL1
+from maze.model.myhero import MyHero
 
 
 class MyMaze:
@@ -14,18 +15,12 @@ class MyMaze:
         self.current_maze = []
         self.init_file()
         self.load_maze()
+        self.hero = MyHero()
 
     def init_file(self):
         """Load maze1.txt and save on current_maze."""
         with LEVEL1.open("r") as file:
             self.current_maze = file.read().splitlines()
-
-    def display_maze(self):
-        """Display the maze at current state."""
-        for line in range(0, 15):
-            for char in range(0, 15):
-                print(" ", self.current_maze[line][char], end="")
-            print("\n")
 
     def set_paths(self):
         """Check empty space, return positions in a list."""
@@ -85,4 +80,6 @@ class MyMaze:
         self.set_walls()
         self.set_paths()
         self.set_items()
-        # self.display_maze()
+
+    def exit_maze(self):
+        """Leave the maze."""
