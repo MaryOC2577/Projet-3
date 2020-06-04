@@ -15,4 +15,4 @@ class Software:
     def run_maze(self):
         """Main loop of the maze."""
         # tant que le joueur n'appuie pas sur la touche echap, le jeu continue.
-        self.view.display_maze(self.maze)
+        self.view.display_maze(self.maze.current_maze)
