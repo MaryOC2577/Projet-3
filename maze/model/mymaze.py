@@ -14,8 +14,8 @@ class MyMaze:
         self.walls = []
         self.current_maze = []
         self.init_file()
-        self.load_maze()
         self.hero = MyHero()
+        self.load_maze()
 
     def init_file(self):
         """Load maze1.txt and save on current_maze."""
@@ -83,3 +83,32 @@ class MyMaze:
 
     def exit_maze(self):
         """Leave the maze."""
+
+    def check_nextcase(self, nextcase=()):
+        """Moves the hero to the next case."""
+        if nextcase in self.walls:
+            print("Hero don't move.")
+            nextcase = ()
+        if nextcase in self.paths:
+            # 0 pour l'ancienne case du héros
+            # le héros se déplace sur la nouvelle case
+            self.hero.hero_position = nextcase
+
+    def set_heroposition(self):
+        """Record new position of the hero."""
+        temp_line = ""
+        current_mazetwo = []
+        print("Hero position in set_heroposition :", self.hero.hero_position)
+        for line in range(0, 15):
+            for char in range(0, 15):
+                if (
+                    self.current_maze[line] == self.hero_position[0]
+                    and self.current_maze[char] == self.hero.hero_position[1]
+                ):
+                    temp_line = "H"
+                else:
+                    temp_line += self.current_maze[line][char]
+                current_mazetwo.append(temp_line)
+                temp_line = ""
+            print("temp maze :", current_mazetwo)
+            self.current_maze = current_mazetwo
