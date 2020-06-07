@@ -88,7 +88,7 @@ class MyMaze:
         """Moves the hero to the next case."""
         if nextcase in self.walls:
             print("Hero don't move.")
-            nextcase = ()
+            nextcase = self.hero.hero_position
         if nextcase in self.paths:
             # 0 pour l'ancienne case du héros
             # le héros se déplace sur la nouvelle case
@@ -97,18 +97,21 @@ class MyMaze:
     def set_heroposition(self):
         """Record new position of the hero."""
         temp_line = ""
-        current_mazetwo = []
+        current_mazethree = []
         print("Hero position in set_heroposition :", self.hero.hero_position)
         for line in range(0, 15):
             for char in range(0, 15):
                 if (
-                    self.current_maze[line] == self.hero_position[0]
-                    and self.current_maze[char] == self.hero.hero_position[1]
+                    line == self.hero.hero_position[0]
+                    and char == self.hero.hero_position[1]
                 ):
-                    temp_line = "H"
+                    print("hero position in if:", self.hero.hero_position)
+                    temp_line += "H"
+                elif self.current_maze[line][char] == "H":
+                    temp_line += "0"
                 else:
                     temp_line += self.current_maze[line][char]
-                current_mazetwo.append(temp_line)
-                temp_line = ""
-            print("temp maze :", current_mazetwo)
-            self.current_maze = current_mazetwo
+            current_mazethree.append(temp_line)
+            temp_line = ""
+        print("temp maze :", current_mazethree)
+        self.current_maze = current_mazethree
