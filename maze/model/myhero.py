@@ -7,6 +7,7 @@ class MyHero:
     def __init__(self):
         """Constructor Hero."""
         self.hero_position = ()
+        self.inventory = []
 
     def hero_moves(self, move, position):
         """Hero moves."""

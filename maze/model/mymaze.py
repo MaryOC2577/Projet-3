@@ -12,6 +12,9 @@ class MyMaze:
         """Initialize the maze, objects."""
         self.paths = []
         self.walls = []
+        self.tube = ()
+        self.needle = ()
+        self.ether = ()
         self.current_maze = []
         self.init_file()
         self.hero = MyHero()
@@ -55,6 +58,10 @@ class MyMaze:
             ether_position = (randint(1, 13), randint(1, 13))
             tube_position = (randint(1, 13), randint(1, 13))
 
+        self.tube = tube_position
+        self.needle = needle_position
+        self.ether = ether_position
+
         temp_line = ""
         current_mazetwo = []
         for line in range(0, 15):
@@ -89,10 +96,26 @@ class MyMaze:
         if nextcase in self.walls:
             print("Hero don't move.")
             nextcase = self.hero.hero_position
-        if nextcase in self.paths:
+        elif nextcase in self.tube:
+            self.hero.inventory.append("T")
+            print("Hero get the tube.")
+            print("inventory T", self.hero.inventory)
+            self.hero.hero_position = nextcase
+        elif nextcase in self.needle:
+            self.hero.inventory.append("N")
+            print("Hero get the needle.")
+            print("inventory N", self.hero.inventory)
+            self.hero.hero_position = nextcase
+        elif nextcase in self.ether:
+            self.hero.inventory.append("E")
+            print("Hero get the ether.")
+            print("inventory E", self.hero.inventory)
+            self.hero.hero_position = nextcase
+        elif nextcase in self.paths:
             # 0 pour l'ancienne case du héros
             # le héros se déplace sur la nouvelle case
             self.hero.hero_position = nextcase
+        print("Inventory :", self.hero.inventory)
 
     def set_heroposition(self):
         """Record new position of the hero."""
