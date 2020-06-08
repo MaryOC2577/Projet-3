@@ -15,6 +15,7 @@ class MyMaze:
         self.tube = ()
         self.needle = ()
         self.ether = ()
+        self.guardian = (8, 13)
         self.current_maze = []
         self.init_file()
         self.hero = MyHero()
@@ -41,22 +42,23 @@ class MyMaze:
 
     def set_items(self):
         """First position of all items."""
-        tube_position = (-1, -1)
-        needle_position = (-2, -2)
-        ether_position = (-3, -3)
+        tube_position = (14, 14)
+        needle_position = (14, 13)
+        ether_position = (14, 12)
         while tube_position and needle_position and ether_position not in self.paths:
-            tube_position = (randint(1, 13), randint(1, 13))
-            needle_position = (randint(1, 13), randint(1, 13))
-            ether_position = (randint(1, 13), randint(1, 13))
-        if tube_position == needle_position:
-            tube_position = (randint(1, 13), randint(1, 13))
-            needle_position = (randint(1, 13), randint(1, 13))
-        elif needle_position == ether_position:
-            needle_position = (randint(1, 13), randint(1, 13))
-            ether_position = (randint(1, 13), randint(1, 13))
-        elif ether_position == tube_position:
-            ether_position = (randint(1, 13), randint(1, 13))
-            tube_position = (randint(1, 13), randint(1, 13))
+            while tube_position and needle_position and ether_position in self.walls:
+                tube_position = (randint(1, 13), randint(1, 13))
+                needle_position = (randint(1, 13), randint(1, 13))
+                ether_position = (randint(1, 13), randint(1, 13))
+                if tube_position == needle_position:
+                    tube_position = (randint(1, 13), randint(1, 13))
+                    needle_position = (randint(1, 13), randint(1, 13))
+                elif needle_position == ether_position:
+                    needle_position = (randint(1, 13), randint(1, 13))
+                    ether_position = (randint(1, 13), randint(1, 13))
+                elif ether_position == tube_position:
+                    ether_position = (randint(1, 13), randint(1, 13))
+                    tube_position = (randint(1, 13), randint(1, 13))
 
         self.tube = tube_position
         self.needle = needle_position
@@ -96,24 +98,26 @@ class MyMaze:
         if nextcase in self.walls:
             print("Hero don't move.")
             nextcase = self.hero.hero_position
-        elif nextcase in self.tube:
+        if nextcase == self.tube:
             self.hero.inventory.append("T")
             print("Hero get the tube.")
             print("inventory T", self.hero.inventory)
             self.hero.hero_position = nextcase
-        elif nextcase in self.needle:
+        if nextcase == self.needle:
             self.hero.inventory.append("N")
             print("Hero get the needle.")
             print("inventory N", self.hero.inventory)
             self.hero.hero_position = nextcase
-        elif nextcase in self.ether:
+        if nextcase == self.ether:
             self.hero.inventory.append("E")
             print("Hero get the ether.")
             print("inventory E", self.hero.inventory)
             self.hero.hero_position = nextcase
-        elif nextcase in self.paths:
-            # 0 pour l'ancienne case du héros
-            # le héros se déplace sur la nouvelle case
+        if nextcase == self.guardian:
+            if self.hero.inventory == ["T", "E", "N"]:
+                print("You win !")
+                # lancer méthode qui quitte le jeu ou qui relance une partie.
+        if nextcase in self.paths:
             self.hero.hero_position = nextcase
         print("Inventory :", self.hero.inventory)
 
