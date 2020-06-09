@@ -125,14 +125,12 @@ class MyMaze:
         """Record new position of the hero."""
         temp_line = ""
         current_mazethree = []
-        print("Hero position in set_heroposition :", self.hero.hero_position)
         for line in range(0, 15):
             for char in range(0, 15):
                 if (
                     line == self.hero.hero_position[0]
                     and char == self.hero.hero_position[1]
                 ):
-                    print("hero position in if:", self.hero.hero_position)
                     temp_line += "H"
                 elif self.current_maze[line][char] == "H":
                     temp_line += "0"
@@ -140,5 +138,4 @@ class MyMaze:
                     temp_line += self.current_maze[line][char]
             current_mazethree.append(temp_line)
             temp_line = ""
-        print("temp maze :", current_mazethree)
         self.current_maze = current_mazethree
