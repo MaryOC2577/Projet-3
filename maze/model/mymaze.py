@@ -96,25 +96,12 @@ class MyMaze:
     def check_nextcase(self, nextcase=()):
         """Moves the hero to the next case."""
         if nextcase in self.walls:
-            print("Hero don't move.")
             nextcase = self.hero.hero_position
-        if nextcase == self.tube:
-            self.hero.inventory.append("T")
-            print("Hero get the tube.")
-            print("inventory T", self.hero.inventory)
-            self.hero.hero_position = nextcase
-        if nextcase == self.needle:
-            self.hero.inventory.append("N")
-            print("Hero get the needle.")
-            print("inventory N", self.hero.inventory)
-            self.hero.hero_position = nextcase
-        if nextcase == self.ether:
-            self.hero.inventory.append("E")
-            print("Hero get the ether.")
-            print("inventory E", self.hero.inventory)
+        if nextcase == self.tube or nextcase == self.needle or nextcase == self.ether:
+            self.hero.inventory.append("*")
             self.hero.hero_position = nextcase
         if nextcase == self.guardian:
-            if self.hero.inventory == ["T", "E", "N"]:
+            if self.hero.inventory == ["*", "*", "*"]:
                 print("You win !")
                 # lancer méthode qui quitte le jeu ou qui relance une partie.
         if nextcase in self.paths:
@@ -139,3 +126,7 @@ class MyMaze:
             current_mazethree.append(temp_line)
             temp_line = ""
         self.current_maze = current_mazethree
+
+    def update(self):
+        """Update positions of alls objects."""
+        #
