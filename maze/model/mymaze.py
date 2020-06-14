@@ -89,44 +89,32 @@ class MyMaze:
         self.set_walls()
         self.set_paths()
         self.set_items()
+        self.hero.position = (0, 0)
 
     def exit_maze(self):
         """Leave the maze."""
 
-    def check_nextcase(self, nextcase=()):
-        """Moves the hero to the next case."""
-        if nextcase in self.walls:
-            nextcase = self.hero.hero_position
-        if nextcase == self.tube or nextcase == self.needle or nextcase == self.ether:
+    def update(self, pressed_key):
+        """Update hero postion."""
+        next_case = self.hero.moves(pressed_key)
+        print("Next case :", next_case)
+        if next_case in self.paths:
+            print("Le héros peut se déplacer.")
+            self.hero.position = next_case
+        elif next_case in self.walls:
+            # class message le héros ne bouge pas
+            print("Le héro ne peut pas bouger dans un mur.")
+        elif (
+            next_case == self.tube
+            or next_case == self.needle
+            or next_case == self.ether
+        ):
+            print("Le héro a rammassé un objet.")
             self.hero.inventory.append("*")
-            self.hero.hero_position = nextcase
-        if nextcase == self.guardian:
+            self.hero.position = next_case
+        elif next_case == self.guardian:
             if self.hero.inventory == ["*", "*", "*"]:
-                print("You win !")
-                # lancer méthode qui quitte le jeu ou qui relance une partie.
-        if nextcase in self.paths:
-            self.hero.hero_position = nextcase
-        print("Inventory :", self.hero.inventory)
-
-    def set_heroposition(self):
-        """Record new position of the hero."""
-        temp_line = ""
-        current_mazethree = []
-        for line in range(0, 15):
-            for char in range(0, 15):
-                if (
-                    line == self.hero.hero_position[0]
-                    and char == self.hero.hero_position[1]
-                ):
-                    temp_line += "H"
-                elif self.current_maze[line][char] == "H":
-                    temp_line += "0"
-                else:
-                    temp_line += self.current_maze[line][char]
-            current_mazethree.append(temp_line)
-            temp_line = ""
-        self.current_maze = current_mazethree
-
-    def update(self):
-        """Update positions of alls objects."""
-        #
+                # class message le héros a gagné la partie
+                # lancer méthode qui quitte le jeu
+                print("Le héros est face au gardien, l'inventaire est complet !")
+        print("Hero case :", self.hero.position)

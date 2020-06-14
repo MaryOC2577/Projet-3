@@ -6,18 +6,18 @@ class InputKeys:
 
     def __init__(self):
         """Init keys."""
-        self.key_press = ""
+        self.pressed_key = ""
 
     def check_keys(self):
         """Check press keys."""
         key = input()
         if key.lower() == "e":
-            self.key_press = "exit"
+            self.pressed_key = "exit"
         if key.lower() == "q":
-            self.key_press = "left"
+            self.pressed_key = "left"
         if key.lower() == "s":
-            self.key_press = "down"
+            self.pressed_key = "down"
         if key.lower() == "d":
-            self.key_press = "right"
+            self.pressed_key = "right"
         if key.lower() == "z":
-            self.key_press = "up"
+            self.pressed_key = "up"

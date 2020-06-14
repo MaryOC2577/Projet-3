@@ -3,7 +3,6 @@
 from maze.model.mymaze import MyMaze
 from maze.view.console import CliView
 from maze.controller.console import InputKeys
-from maze.model.position import Position
 
 
 class Software:
@@ -14,20 +13,13 @@ class Software:
         self.maze = MyMaze()
         self.view = CliView()
         self.keys = InputKeys()
-        self.position = Position()
 
     def run_maze(self):
         """Main loop of the maze."""
         # tant que le joueur n'appuie pas sur la touche e le jeu continue.
         self.view.display_maze(self.maze.current_maze)
-        while self.keys.key_press != "exit":
+        while self.keys.pressed_key != "exit":
             self.keys.check_keys()
-            self.maze.check_nextcase(
-                self.maze.hero.hero_moves(
-                    self.keys.key_press,
-                    self.position.items_position("H", self.maze.current_maze),
-                )
-            )
-            self.maze.set_heroposition()
+            self.maze.update(self.keys.pressed_key)
             self.view.display_maze(self.maze.current_maze)
         print("Game over.")
