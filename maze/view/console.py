@@ -13,7 +13,7 @@ class CliView:
         """Display the maze."""
         for line in range(0, 15):
             for char in range(0, 15):
-                if self.hero.position == (line, char):
+                if (line, char) == self.hero.position:
                     print(" ", "H", end="")
                 else:
                     print(" ", maze[line][char], end="")

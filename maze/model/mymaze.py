@@ -89,30 +89,25 @@ class MyMaze:
         self.set_walls()
         self.set_paths()
         self.set_items()
-        self.hero.position = (0, 0)
 
     def exit_maze(self):
         """Leave the maze."""
 
     def update(self, pressed_key):
         """Update hero postion."""
-        next_case = self.hero.moves(pressed_key)
-        print("Next case :", next_case)
-        if next_case in self.paths:
-            print("Le héros peut se déplacer.")
-            self.hero.position = next_case
-        elif next_case in self.walls:
-            # class message le héros ne bouge pas
-            print("Le héro ne peut pas bouger dans un mur.")
+        new_position = self.hero.moves(pressed_key)
+        if new_position in self.paths:
+            self.hero.position = new_position
+        elif new_position in self.walls:
+            new_position = self.hero.position
         elif (
-            next_case == self.tube
-            or next_case == self.needle
-            or next_case == self.ether
+            new_position == self.tube
+            or new_position == self.needle
+            or new_position == self.ether
         ):
-            print("Le héro a rammassé un objet.")
             self.hero.inventory.append("*")
-            self.hero.position = next_case
-        elif next_case == self.guardian:
+            self.hero.position = new_position
+        elif new_position == self.guardian:
             if self.hero.inventory == ["*", "*", "*"]:
                 # class message le héros a gagné la partie
                 # lancer méthode qui quitte le jeu

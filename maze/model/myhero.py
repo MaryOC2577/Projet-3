@@ -6,18 +6,17 @@ class MyHero:
 
     def __init__(self):
         """Constructor Hero."""
-        self.position = ()
+        self.position = (0, 0)
         self.inventory = []
 
     def moves(self, move):
         """Hero moves."""
-        next_case = ()
         if move == "left":
-            next_case = (self.position[0], self.position[1] - 1)
+            new_position = (self.position[0], self.position[1] - 1)
         if move == "right":
-            next_case = (self.position[0], self.position[1] + 1)
+            new_position = (self.position[0], self.position[1] + 1)
         if move == "up":
-            next_case = (self.position[0] - 1, self.position[1])
+            new_position = (self.position[0] - 1, self.position[1])
         if move == "down":
-            next_case = (self.position[0] + 1, self.position[1])
-        return next_case
+            new_position = (self.position[0] + 1, self.position[1])
+        return new_position
