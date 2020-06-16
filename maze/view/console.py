@@ -1,5 +1,5 @@
 """CLI view."""
-from maze.model.myhero import MyHero
+from maze.model.mymaze import MyMaze
 
 
 class CliView:
@@ -7,14 +7,24 @@ class CliView:
 
     def __init__(self):
         """Initialized."""
-        self.hero = MyHero()
+        self.maze = MyMaze()
 
-    def display_maze(self, maze):
+    def display_maze(self):
         """Display the maze."""
-        for line in range(0, 15):
-            for char in range(0, 15):
-                if (line, char) == self.hero.position:
-                    print(" ", "H", end="")
-                else:
-                    print(" ", maze[line][char], end="")
+        for x in range(15):
+            for y in range(15):
+                if (x, y) in self.maze.walls:
+                    print(" ", "X", end="")
+                if (x, y) in self.maze.paths:
+                    if (x, y) == self.maze.tube:
+                        print(" ", "T", end="")
+                    if (x, y) == self.maze.needle:
+                        print(" ", "N", end="")
+                    if (x, y) == self.maze.ether:
+                        print(" ", "E", end="")
+                    if (x, y) == self.maze.guardian:
+                        print(" ", "G", end="")
+                    if (x, y) == self.maze.hero.position:
+                        print(" ", "H", end="")
+                    print(" ", "0", end="")
             print("\n")

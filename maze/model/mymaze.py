@@ -111,5 +111,4 @@ class MyMaze:
             if self.hero.inventory == ["*", "*", "*"]:
                 # class message le héros a gagné la partie
                 # lancer méthode qui quitte le jeu
-                print("Le héros est face au gardien, l'inventaire est complet !")
-        print("Hero case :", self.hero.position)
+                print("Inventaire complet")
