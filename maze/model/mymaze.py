@@ -12,11 +12,11 @@ class MyMaze:
         """Initialize objects."""
         self.paths = []
         self.walls = []
-        self.tube = ()
-        self.needle = ()
-        self.ether = ()
+        self.tube = []
+        self.needle = []
+        self.ether = []
         self.guardian = ()
-        self.current_maze = []
+        self.finish = ()
         self.hero = MyHero(self)
         self.height = self.width = 0
 
@@ -35,12 +35,16 @@ class MyMaze:
                     self.hero.position = position
                 if char == "G":
                     self.guardian = position
+                if char == "F":
+                    self.finish = position
                 if char in ["0", "H"]:
                     self.paths.append(position)
                 elif char == "X":
                     self.walls.append(position)
+
             self.width = index_x
         self.height = index_y
+        self.set_items()
 
     def set_items(self):
         """First position of all items."""
@@ -62,29 +66,14 @@ class MyMaze:
                     ether_position = (randint(1, 13), randint(1, 13))
                     tube_position = (randint(1, 13), randint(1, 13))
 
-        self.tube = tube_position
-        self.needle = needle_position
-        self.ether = ether_position
+        self.tube = ["tube", "T", tube_position]
+        self.needle = ["needle", "N", needle_position]
+        self.ether = ["ether", "E", ether_position]
 
-        temp_line = ""
-        current_mazetwo = []
-        for line in range(0, 15):
-            for char in range(0, 15):
-                if self.current_maze[line][char] == "S":
-                    temp_line += "H"
-                elif line == 8 and char == 13:
-                    temp_line += "G"
-                elif line == tube_position[0] and char == tube_position[1]:
-                    temp_line += "T"
-                elif line == needle_position[0] and char == needle_position[1]:
-                    temp_line += "N"
-                elif line == ether_position[0] and char == ether_position[1]:
-                    temp_line += "E"
-                else:
-                    temp_line += self.current_maze[line][char]
-            current_mazetwo.append(temp_line)
-            temp_line = ""
-        self.current_maze = current_mazetwo
+    def check_inventory(self):
+        """Check inventory."""
+        if self.hero.position == self.tube[2] or self.needle[2] or self.ether[2]:
+            self.hero.inventory.append("*")
 
     def exit_maze(self):
         """Leave the maze."""
@@ -92,3 +81,4 @@ class MyMaze:
     def update(self, pressed_key):
         """Update hero postion."""
         self.hero.moves(pressed_key)
+        print("Inventory :", self.hero.inventoryù)

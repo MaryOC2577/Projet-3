@@ -24,4 +24,4 @@ class MyHero:
         if new_position not in self.maze.paths:
             return False
         self.position = new_position
-
+        print("self position :", self.position)

@@ -11,20 +11,24 @@ class CliView:
 
     def display_maze(self):
         """Display the maze."""
-        for x in range(15):
-            for y in range(15):
-                if (x, y) in self.maze.walls:
+        for index_y in range(self.maze.height + 1):
+            for index_x in range(self.maze.width + 1):
+                position = (index_x, index_y)
+                if position in self.maze.walls:
                     print(" ", "X", end="")
-                if (x, y) in self.maze.paths:
-                    if (x, y) == self.maze.tube:
-                        print(" ", "T", end="")
-                    if (x, y) == self.maze.needle:
-                        print(" ", "N", end="")
-                    if (x, y) == self.maze.ether:
-                        print(" ", "E", end="")
-                    if (x, y) == self.maze.guardian:
-                        print(" ", "G", end="")
-                    if (x, y) == self.maze.hero.position:
+                elif position in self.maze.paths:
+                    if position == self.maze.hero.position:
                         print(" ", "H", end="")
-                    print(" ", "0", end="")
+                    elif position == self.maze.tube[2]:
+                        print(" ", self.maze.tube[1], end="")
+                    elif position == self.maze.needle[2]:
+                        print(" ", self.maze.needle[1], end="")
+                    elif position == self.maze.ether[2]:
+                        print(" ", self.maze.ether[1], end="")
+                    else:
+                        print(" ", "0", end="")
+                elif position == self.maze.guardian:
+                    print(" ", "G", end="")
+                elif position == self.maze.finish:
+                    print(" ", "F", end="")
             print("\n")
