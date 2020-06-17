@@ -9,36 +9,38 @@ class MyMaze:
     """Create the maze."""
 
     def __init__(self):
-        """Initialize the maze, objects."""
+        """Initialize objects."""
         self.paths = []
         self.walls = []
         self.tube = ()
         self.needle = ()
         self.ether = ()
-        self.guardian = (8, 13)
+        self.guardian = ()
         self.current_maze = []
-        self.init_file()
-        self.hero = MyHero()
-        self.load_maze()
+        self.hero = MyHero(self)
+        self.height = self.width = 0
 
-    def init_file(self):
-        """Load maze1.txt and save on current_maze."""
+        self.init_maze()
+
+    def init_maze(self):
+        """Initialization of the maze."""
+        index_x = index_y = 0
         with LEVEL1.open("r") as file:
-            self.current_maze = file.read().splitlines()
+            content = file.readlines()
 
-    def set_paths(self):
-        """Check empty space, return positions in a list."""
-        for line in range(0, 15):
-            for char in range(0, 15):
-                if self.current_maze[line][char] == "0":
-                    self.paths.append((line, char))
-
-    def set_walls(self):
-        """Content walls positions."""
-        for line in range(0, 15):
-            for char in range(0, 15):
-                if self.current_maze[line][char] == "X":
-                    self.walls.append((line, char))
+        for index_y, line in enumerate(content):
+            for index_x, char in enumerate(line):
+                position = (index_x, index_y)
+                if char == "H":
+                    self.hero.position = position
+                if char == "G":
+                    self.guardian = position
+                if char in ["0", "H"]:
+                    self.paths.append(position)
+                elif char == "X":
+                    self.walls.append(position)
+            self.width = index_x
+        self.height = index_y
 
     def set_items(self):
         """First position of all items."""
@@ -84,31 +86,9 @@ class MyMaze:
             temp_line = ""
         self.current_maze = current_mazetwo
 
-    def load_maze(self):
-        """Load the game."""
-        self.set_walls()
-        self.set_paths()
-        self.set_items()
-
     def exit_maze(self):
         """Leave the maze."""
 
     def update(self, pressed_key):
         """Update hero postion."""
-        new_position = self.hero.moves(pressed_key)
-        if new_position in self.paths:
-            self.hero.position = new_position
-        elif new_position in self.walls:
-            new_position = self.hero.position
-        elif (
-            new_position == self.tube
-            or new_position == self.needle
-            or new_position == self.ether
-        ):
-            self.hero.inventory.append("*")
-            self.hero.position = new_position
-        elif new_position == self.guardian:
-            if self.hero.inventory == ["*", "*", "*"]:
-                # class message le héros a gagné la partie
-                # lancer méthode qui quitte le jeu
-                print("Inventaire complet")
+        self.hero.moves(pressed_key)

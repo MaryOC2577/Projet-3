@@ -4,19 +4,24 @@
 class MyHero:
     """Create a hero."""
 
-    def __init__(self):
+    def __init__(self, maze):
         """Constructor Hero."""
-        self.position = (0, 0)
+        self.maze = maze
+        self.position = ()
         self.inventory = []
 
     def moves(self, move):
         """Hero moves."""
+        x, y = self.position
         if move == "left":
-            new_position = (self.position[0], self.position[1] - 1)
+            new_position = x - 1, y
         if move == "right":
-            new_position = (self.position[0], self.position[1] + 1)
+            new_position = x + 1, y
         if move == "up":
-            new_position = (self.position[0] - 1, self.position[1])
+            new_position = x, y - 1
         if move == "down":
-            new_position = (self.position[0] + 1, self.position[1])
-        return new_position
+            new_position = x, y + 1
+        if new_position not in self.maze.paths:
+            return False
+        self.position = new_position
+
