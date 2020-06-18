@@ -72,7 +72,11 @@ class MyMaze:
 
     def check_inventory(self):
         """Check inventory."""
-        if self.hero.position == self.tube[2] or self.needle[2] or self.ether[2]:
+        if (
+            self.hero.position == self.tube[2]
+            or self.hero.position == self.needle[2]
+            or self.hero.position == self.ether[2]
+        ):
             self.hero.inventory.append("*")
 
     def exit_maze(self):
@@ -81,4 +85,5 @@ class MyMaze:
     def update(self, pressed_key):
         """Update hero postion."""
         self.hero.moves(pressed_key)
-        print("Inventory :", self.hero.inventoryù)
+        self.check_inventory()
+        print("Inventory :", self.hero.inventory)

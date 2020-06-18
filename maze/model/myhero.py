@@ -12,7 +12,7 @@ class MyHero:
 
     def moves(self, move):
         """Hero moves."""
-        x, y = self.position
+        (x, y) = self.position
         if move == "left":
             new_position = x - 1, y
         if move == "right":

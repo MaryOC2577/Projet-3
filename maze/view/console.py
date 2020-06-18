@@ -32,3 +32,4 @@ class CliView:
                 elif position == self.maze.finish:
                     print(" ", "F", end="")
             print("\n")
+        print("self.maze.hero.position :", self.maze.hero.position)

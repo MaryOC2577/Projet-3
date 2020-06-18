@@ -1,5 +1,5 @@
 """Class application."""
-
+import os
 from maze.model.mymaze import MyMaze
 from maze.view.console import CliView
 from maze.controller.console import InputKeys
@@ -20,6 +20,7 @@ class Software:
         self.view.display_maze()
         while self.keys.pressed_key != "exit":
             self.keys.check_keys()
+            os.system("cls")
             self.maze.update(self.keys.pressed_key)
             self.view.display_maze()
         print("Game over.")
