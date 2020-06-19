@@ -84,3 +84,4 @@ class MyMaze:
         """Update hero postion."""
         self.hero.moves(pressed_key)
         self.check_inventory()
+        print("Inventory :", self.hero.inventory)
