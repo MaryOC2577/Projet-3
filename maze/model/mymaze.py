@@ -77,6 +77,13 @@ class MyMaze:
         ):
             self.hero.inventory.append("*")
 
+    def check_guardian(self):
+        """Inventory complete."""
+        if self.hero.position == self.guardian:
+            if self.hero.inventory == ["*", "*", "*"]:
+                print("You win !")
+                # Proposer une nouvelle partie ou quitter le jeu.
+
     def exit_maze(self):
         """Leave the maze."""
 
@@ -85,3 +92,5 @@ class MyMaze:
         self.hero.moves(pressed_key)
         self.check_inventory()
         print("Inventory :", self.hero.inventory)
+        print("Items :", self.items)
+        self.check_inventory()
