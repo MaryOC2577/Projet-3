@@ -19,12 +19,12 @@ class CliView:
                 elif position in self.maze.paths:
                     if position == self.maze.hero.position:
                         print(" ", "H", end="")
-                    elif position == self.maze.tube[2]:
-                        print(" ", self.maze.tube[1], end="")
-                    elif position == self.maze.needle[2]:
-                        print(" ", self.maze.needle[1], end="")
-                    elif position == self.maze.ether[2]:
-                        print(" ", self.maze.ether[1], end="")
+                    elif position == self.maze.items[0][2]:
+                        print(" ", self.maze.items[0][1], end="")
+                    elif position == self.maze.items[1][2]:
+                        print(" ", self.maze.items[1][1], end="")
+                    elif position == self.maze.items[2][2]:
+                        print(" ", self.maze.items[2][1], end="")
                     else:
                         print(" ", "0", end="")
                 elif position == self.maze.guardian:

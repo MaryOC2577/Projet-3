@@ -12,7 +12,7 @@ class MyHero:
 
     def moves(self, move):
         """Hero moves."""
-        (x, y) = self.position
+        x, y = self.position
         if move == "left":
             new_position = x - 1, y
         if move == "right":
@@ -24,4 +24,4 @@ class MyHero:
         if new_position not in self.maze.paths:
             return False
         self.position = new_position
-        print("self position :", self.position)
+        print("self.position :", self.position)

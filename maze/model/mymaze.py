@@ -12,9 +12,7 @@ class MyMaze:
         """Initialize objects."""
         self.paths = []
         self.walls = []
-        self.tube = []
-        self.needle = []
-        self.ether = []
+        self.items = []
         self.guardian = ()
         self.finish = ()
         self.hero = MyHero(self)
@@ -66,16 +64,16 @@ class MyMaze:
                     ether_position = (randint(1, 13), randint(1, 13))
                     tube_position = (randint(1, 13), randint(1, 13))
 
-        self.tube = ["tube", "T", tube_position]
-        self.needle = ["needle", "N", needle_position]
-        self.ether = ["ether", "E", ether_position]
+        self.items.append(["tube", "T", tube_position])
+        self.items.append(["needle", "N", needle_position])
+        self.items.append(["ether", "E", ether_position])
 
     def check_inventory(self):
         """Check inventory."""
         if (
-            self.hero.position == self.tube[2]
-            or self.hero.position == self.needle[2]
-            or self.hero.position == self.ether[2]
+            self.hero.position == self.items[0][2]
+            or self.hero.position == self.items[1][2]
+            or self.hero.position == self.items[2][2]
         ):
             self.hero.inventory.append("*")
 
@@ -86,4 +84,3 @@ class MyMaze:
         """Update hero postion."""
         self.hero.moves(pressed_key)
         self.check_inventory()
-        print("Inventory :", self.hero.inventory)
