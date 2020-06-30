@@ -17,12 +17,12 @@ class CliView:
                 elif position in maze.paths:
                     items_positions = [item.position for item in maze.items]
                     items_char = [item.char for item in maze.items]
-                    if position in maze.guardian:
-                        print(" ", "G", end="")
-                    elif position == maze.hero.position:
+                    if position == maze.hero.position:
                         print(" ", "H", end="")
                     elif position in items_positions:
                         print(" ", items_char[items_positions.index(position)], end="")
+                    elif position == maze.guardian:
+                        print(" ", "G", end="")
                     else:
                         print(" ", "0", end="")
             print("\n")

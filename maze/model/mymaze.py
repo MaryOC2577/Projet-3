@@ -33,7 +33,7 @@ class MyMaze:
                 if char == "H":
                     self.hero.position = position
                 if char == "G":
-                    self.guardian = position
+                    self.guarian = position
                 if char in ["0", "H"]:
                     self.paths.append(position)
                 elif char == "X":
@@ -61,11 +61,10 @@ class MyMaze:
 
     def check_inventory(self):
         """Check inventory."""
-        if self.hero.position in self.items:
-            # self.hero.position == self.items[0][2]
-            # or self.hero.position == self.items[1][2]
-            # or self.hero.position == self.items[2][2]
+        items_positions = [item.position for item in self.items]
+        if self.hero.position in items_positions:
             self.hero.inventory.append("*")
+            del self.items[items_positions.index(self.hero.position)]
 
     def check_guardian(self):
         """Inventory complete."""
