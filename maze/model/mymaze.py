@@ -1,5 +1,6 @@
 """Class MyMaze."""
 
+import sys
 from random import randint
 from maze.config import LEVEL1
 from maze.model.myhero import MyHero
@@ -33,8 +34,8 @@ class MyMaze:
                 if char == "H":
                     self.hero.position = position
                 if char == "G":
-                    self.guarian = position
-                if char in ["0", "H"]:
+                    self.guardian = position
+                if char in ["0", "H", "G"]:
                     self.paths.append(position)
                 elif char == "X":
                     self.walls.append(position)
@@ -71,10 +72,11 @@ class MyMaze:
         if self.hero.position == self.guardian:
             if self.hero.inventory == ["*", "*", "*"]:
                 print("You win !")
-                # Proposer une nouvelle partie ou quitter le jeu.
+                self.exit_maze()
 
     def exit_maze(self):
         """Leave the maze."""
+        sys.exit()
 
     def update(self, pressed_key):
         """Update hero postion."""

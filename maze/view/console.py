@@ -19,10 +19,10 @@ class CliView:
                     items_char = [item.char for item in maze.items]
                     if position == maze.hero.position:
                         print(" ", "H", end="")
-                    elif position in items_positions:
-                        print(" ", items_char[items_positions.index(position)], end="")
                     elif position == maze.guardian:
                         print(" ", "G", end="")
+                    elif position in items_positions:
+                        print(" ", items_char[items_positions.index(position)], end="")
                     else:
                         print(" ", "0", end="")
             print("\n")

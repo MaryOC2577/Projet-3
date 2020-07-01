@@ -22,4 +22,5 @@ class Software:
             os.system("cls")
             self.maze.update(self.keys.pressed_key)
             self.view.display_maze(self.maze)
+            self.maze.check_guardian()
         print("Game over.")
