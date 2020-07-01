@@ -73,6 +73,9 @@ class MyMaze:
             if self.hero.inventory == ["*", "*", "*"]:
                 print("You win !")
                 self.exit_maze()
+            else:
+                print("You loose !")
+                self.exit_maze()
 
     def exit_maze(self):
         """Leave the maze."""
