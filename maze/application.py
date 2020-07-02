@@ -16,11 +16,10 @@ class Software:
 
     def run_maze(self):
         """Main loop of the maze."""
-        self.view.display_maze(self.maze)
         while self.keys.pressed_key != "exit":
-            self.keys.check_keys()
             system("cls")
             self.maze.update(self.keys.pressed_key)
-            self.view.display_maze(self.maze)
-            self.maze.check_guardian()
+            self.keys.check_keys()
+            self.view.display(self.maze)
+
         print("Game over.")

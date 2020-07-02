@@ -1,5 +1,7 @@
 """Controller."""
 
+from maze.model.message import messages
+
 
 class InputKeys:
     """Check input keys."""
@@ -10,14 +12,16 @@ class InputKeys:
 
     def check_keys(self):
         """Check press keys."""
-        key = input()
-        if key.lower() == "e":
-            self.pressed_key = "exit"
-        if key.lower() == "q":
-            self.pressed_key = "left"
-        if key.lower() == "s":
-            self.pressed_key = "down"
-        if key.lower() == "d":
-            self.pressed_key = "right"
-        if key.lower() == "z":
-            self.pressed_key = "up"
+        possible_keys = {
+            "e": "exit",
+            "q": "left",
+            "s": "down",
+            "d": "right",
+            "z": "up",
+        }
+        key = input().lower()
+        if key not in possible_keys:
+            messages.add_message("Invalid key !")
+            self.pressed_key = ""
+            return
+        self.pressed_key = possible_keys[key]

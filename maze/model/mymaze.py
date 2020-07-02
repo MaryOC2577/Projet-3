@@ -5,6 +5,7 @@ from random import randint
 from maze.config import LEVEL1
 from maze.model.myhero import MyHero
 from maze.model.item import Item
+from maze.model.message import messages
 
 
 class MyMaze:
@@ -18,6 +19,7 @@ class MyMaze:
         self.guardian = ()
         self.hero = MyHero(self)
         self.height = self.width = 0
+        self.messages = messages
 
         self.init_maze()
         self.set_items()
@@ -87,3 +89,5 @@ class MyMaze:
         self.check_inventory()
         print("Inventory :", self.hero.inventory)
         self.check_inventory()
+        self.check_guardian()
+

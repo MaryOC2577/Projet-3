@@ -6,11 +6,19 @@ class Messages:
 
     def __init__(self):
         """Init."""
-        self.message = []
+        self.messages = []
 
-    def add_message(self):
+    def __iter__(self):
+        for message in self.messages:
+            yield message
+
+    def add_message(self, message):
         """Add."""
+        self.messages.append(message)
 
     def clear_message(self):
         """Clear."""
-        self.message = []
+        self.messages = []
+
+
+messages = Messages()
