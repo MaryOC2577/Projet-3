@@ -1,6 +1,5 @@
 """Class MyMaze."""
 
-from os import system
 from os import sys
 from random import randint
 from maze.config import LEVEL1
@@ -92,7 +91,6 @@ class MyMaze:
 
     def update(self, pressed_key):
         """Update hero postion."""
-        system("cls")
         self.hero.moves(pressed_key)
         self.check_inventory()
         self.check_inventory()

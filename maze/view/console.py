@@ -1,5 +1,7 @@
 """CLI view."""
 
+from os import system
+
 
 class CliView:
     """View in console mode."""
@@ -9,6 +11,7 @@ class CliView:
 
     def display(self, maze):
         """Main method."""
+        system("cls")
         print("Game controls :\nq : left\nd : right\nz : up\ns : down\ne : exit")
         self.display_maze(maze)
         self.display_messages(maze)
