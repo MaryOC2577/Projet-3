@@ -1,6 +1,7 @@
 """Class MyMaze."""
 
-import sys
+from os import system
+from os import sys
 from random import randint
 from maze.config import LEVEL1
 from maze.model.myhero import MyHero
@@ -48,9 +49,9 @@ class MyMaze:
     def set_items(self):
         """First position of all items."""
         items = [
-            ("needle", "N"),
-            ("tube", "T"),
-            ("ether", "E"),
+            ("needle", "n"),
+            ("tube", "t"),
+            ("ether", "e"),
         ]
         position_blacklist = self.walls + [self.guardian, self.hero.position]
         for name, char in items:
@@ -65,8 +66,14 @@ class MyMaze:
     def check_inventory(self):
         """Check inventory."""
         items_positions = [item.position for item in self.items]
+        items_name = [item.name for item in self.items]
         if self.hero.position in items_positions:
             self.hero.inventory.append("*")
+            self.messages.add_message(
+                "Hero pick the "
+                + items_name[items_positions.index(self.hero.position)]
+                + ".",
+            )
             del self.items[items_positions.index(self.hero.position)]
 
     def check_guardian(self):
@@ -85,9 +92,9 @@ class MyMaze:
 
     def update(self, pressed_key):
         """Update hero postion."""
+        system("cls")
         self.hero.moves(pressed_key)
         self.check_inventory()
-        print("Inventory :", self.hero.inventory)
         self.check_inventory()
         self.check_guardian()
 

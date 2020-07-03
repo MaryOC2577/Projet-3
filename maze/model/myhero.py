@@ -1,5 +1,7 @@
 """Class Hero."""
 
+from maze.model.message import messages
+
 
 class MyHero:
     """Create a hero."""
@@ -23,6 +25,7 @@ class MyHero:
         if move == "down":
             new_position = x, y + 1
         if new_position not in self.maze.paths:
+            messages.add_message("Hero can't move in a wall !")
             return False
         self.position = new_position
         return True

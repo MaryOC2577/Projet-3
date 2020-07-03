@@ -16,7 +16,7 @@ class Messages:
         """Add."""
         self.messages.append(message)
 
-    def clear_message(self):
+    def clear(self):
         """Clear."""
         self.messages = []
 

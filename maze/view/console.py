@@ -9,6 +9,7 @@ class CliView:
 
     def display(self, maze):
         """Main method."""
+        print("Game controls :\nq : left\nd : right\nz : up\ns : down\ne : exit")
         self.display_maze(maze)
         self.display_messages(maze)
 
@@ -36,4 +37,4 @@ class CliView:
         """Display the messages."""
         for message in maze.messages:
             print(message)
-        maze.messages.clear_message()
+        maze.messages.clear()
