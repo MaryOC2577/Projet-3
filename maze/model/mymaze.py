@@ -95,4 +95,3 @@ class MyMaze:
         self.check_inventory()
         self.check_inventory()
         self.check_guardian()
-
