@@ -12,9 +12,22 @@ class CliView:
     def display(self, maze):
         """Main method."""
         system("cls")
-        print("Game controls :\nq : left\nd : right\nz : up\ns : down\ne : exit")
+        self.commands()
         self.display_maze(maze)
         self.display_messages(maze)
+
+    def commands(self):
+        """Display controls."""
+        commands = {
+            "q": "left",
+            "d": "right",
+            "z": "up",
+            "s": "down",
+            "e": "exit",
+        }
+        for key, command in commands.items():
+            print(" ", key, ":", command)
+        print("\n")
 
     def display_maze(self, maze):
         """Display the maze."""
@@ -31,7 +44,9 @@ class CliView:
                     elif position == maze.guardian:
                         print("G", end="")
                     elif position in items_positions:
-                        print(items_char[items_positions.index(position)], end="")
+                        print(
+                            items_char[items_positions.index(position)], end=""
+                        )
                     else:
                         print(".", end="")
             print()
