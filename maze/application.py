@@ -1,6 +1,8 @@
 """Class application."""
 from maze.model.mymaze import MyMaze
-from maze.view.console import CliView
+
+# from maze.view.console import CliView
+from maze.view.pyview import PyView
 from maze.controller.console import InputKeys
 
 
