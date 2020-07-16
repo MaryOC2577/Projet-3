@@ -20,6 +20,9 @@ class PyView:
         self.wall = pygame.image.load(
             "c:/Users/Utilisateur/OneDrive/Documents/prog/projet3/maze/data/wall.png"
         )
+        self.hero = pygame.image.load(
+            "c:/Users/Utilisateur/OneDrive/Documents/prog/projet3/maze/data/hero.png"
+        )
 
     def display(self, maze):
         """Main method."""
@@ -37,6 +40,13 @@ class PyView:
                     self.screen.blit(
                         self.wall, (position[0] * 32, position[1] * 32)
                     )
+                elif position in maze.paths:
+                    items_positions = [item.position for item in maze.items]
+                    items_char = [item.char for item in maze.items]
+                    if position == maze.hero.position:
+                        self.screen.blit(
+                            self.hero, (position[0] * 32, position[1] * 32)
+                        )
 
         pygame.display.flip()
 
