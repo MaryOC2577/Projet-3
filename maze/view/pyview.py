@@ -12,11 +12,10 @@ class PyView:
 
     def display(self, maze):
         """Main method."""
-        system("cls")
         self.display_maze(maze)
 
     def display_maze(self, maze):
-    """Display the maze."""
+        """Display the maze."""
 
         pygame.init()
 
@@ -35,12 +34,9 @@ class PyView:
                 position = (index_x, index_y)
                 if position in maze.walls:
                     screen.blit(wall, (position[0]*32, position[1]*32)
+                    pygame.display.flip()
 
-        #screen.blit(wall, (0, 32))
-
-        pygame.display.flip()
-
-    while 1:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+        while 1:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()

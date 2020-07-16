@@ -1,4 +1,5 @@
 """Class application."""
+
 from maze.model.mymaze import MyMaze
 
 # from maze.view.console import CliView
@@ -12,7 +13,7 @@ class Software:
     def __init__(self):
         """Initialized software."""
         self.maze = MyMaze()
-        self.view = CliView()
+        self.view = PyView()
         self.keys = InputKeys()
 
     def run_maze(self):
