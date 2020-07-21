@@ -3,8 +3,8 @@
 from maze.model.mymaze import MyMaze
 
 # from maze.view.console import CliView
-from maze.view.pyview import PyView
-from maze.controller.console import InputKeys
+from maze.view.pygame import PyGameView
+from maze.controller.pygame import InputKeys
 
 
 class Software:
@@ -13,7 +13,7 @@ class Software:
     def __init__(self):
         """Initialized software."""
         self.maze = MyMaze()
-        self.view = PyView()
+        self.view = PyGameView()
         self.keys = InputKeys()
 
     def run_maze(self):

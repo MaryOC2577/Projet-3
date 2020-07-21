@@ -8,7 +8,7 @@ import pygame
 from maze import config
 
 
-class PyView:
+class PyGameView:
     """View with pygame."""
 
     def __init__(self):
@@ -23,6 +23,9 @@ class PyView:
         self.wall = pygame.image.load(str(config.IMG_DIR / "wall.png"))
         self.hero = pygame.image.load(str(config.IMG_DIR / "hero.png"))
         self.guardian = pygame.image.load(str(config.IMG_DIR / "guardian.png"))
+        self.ether = pygame.image.load(str(config.IMG_DIR / "ether.png"))
+        self.needle = pygame.image.load(str(config.IMG_DIR / "needle.png"))
+        self.tube = pygame.image.load(str(config.IMG_DIR / "tube.png"))
 
     def display(self, maze):
         """Main method."""
@@ -44,15 +47,38 @@ class PyView:
                     self.screen.blit(self.wall, pygame_position)
                 elif position in maze.paths:
                     items_positions = [item.position for item in maze.items]
-                    items_char = [item.char for item in maze.items]
+                    items_names = [item.name for item in maze.items]
                     if position == maze.hero.position:
                         self.screen.blit(self.hero, pygame_position)
                     elif position == maze.guardian:
                         self.screen.blit(self.guardian, pygame_position)
-
+                    elif position in items_positions:
+                        if (
+                            items_names[items_positions.index(position)]
+                            == "tube"
+                        ):
+                            self.screen.blit(self.tube, pygame_position)
+                        elif (
+                            items_names[items_positions.index(position)]
+                            == "ether"
+                        ):
+                            self.screen.blit(self.ether, pygame_position)
+                        elif (
+                            items_names[items_positions.index(position)]
+                            == "needle"
+                        ):
+                            self.screen.blit(self.needle, pygame_position)
+                        # self.screen.blit(self.  + items_names[items_positions.index(position)],pygame_position)
         pygame.display.flip()
 
         while 1:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+
+    def display_messages(self, maze):
+        """Display the messages."""
+        for message in maze.messages:
+            print(message)
+            # afficher le message en bas de la fenêtre pendant 2 secondes
+        maze.messages.clear()
