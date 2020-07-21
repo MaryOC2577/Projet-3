@@ -68,7 +68,8 @@ class PyGameView:
                             == "needle"
                         ):
                             self.screen.blit(self.needle, pygame_position)
-                        # self.screen.blit(self.  + items_names[items_positions.index(position)],pygame_position)
+                        # self.screen.blit(self.  +
+                        # items_names[items_positions.index(position)],pygame_position)
         pygame.display.flip()
 
         while 1:
