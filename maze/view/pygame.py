@@ -1,7 +1,6 @@
 """Pygame view."""
 
 import sys
-from os import sys
 
 import pygame
 

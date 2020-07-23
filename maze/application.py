@@ -2,9 +2,12 @@
 
 from maze.model.mymaze import MyMaze
 
-# from maze.view.console import CliView
+
 from maze.view.pygame import PyGameView
 from maze.controller.pygame import InputKeys
+
+# from maze.view.console import CliView
+# from maze.controller.console import InputKeys
 
 
 class Software:
