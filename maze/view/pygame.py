@@ -18,6 +18,7 @@ class PyGameView:
         self.size = width, height = (480, 480)
         self.background_color = (0, 50, 0)
         self.screen = pygame.display.set_mode(self.size)
+        self.font = pygame.font.SysFont("comicsansms", 72)
 
         self.wall = pygame.image.load(str(config.IMG_DIR / "wall.png"))
         self.hero = pygame.image.load(str(config.IMG_DIR / "hero.png"))
@@ -79,6 +80,10 @@ class PyGameView:
     def display_messages(self, maze):
         """Display the messages."""
         for message in maze.messages:
-            print(message)
+            text = self.font.render(message, True, (0, 128, 0))
+            self.screen.blit(
+                text, (20, 448),
+            )
+            pygame.display.flip()
             # afficher le message en bas de la fenêtre pendant 2 secondes
         maze.messages.clear()

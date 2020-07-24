@@ -25,4 +25,3 @@ class Software:
             self.view.display(self.maze)
             self.keys.check_keys()
             self.maze.update(self.keys.pressed_key)
-        print("Game over.")

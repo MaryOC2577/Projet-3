@@ -79,10 +79,10 @@ class MyMaze:
         """Inventory complete."""
         if self.hero.position == self.guardian:
             if self.hero.inventory == ["*", "*", "*"]:
-                print("You win !")
+                self.messages.add_message("You win !")
                 self.exit_maze()
             else:
-                print("You loose !")
+                self.messages.add_message("You loose !")
                 self.exit_maze()
 
     def exit_maze(self):
@@ -92,6 +92,5 @@ class MyMaze:
     def update(self, pressed_key):
         """Update hero postion."""
         self.hero.moves(pressed_key)
-        self.check_inventory()
         self.check_inventory()
         self.check_guardian()

@@ -1,8 +1,8 @@
 """Pygame controller."""
 
-import sys
-
 import pygame
+
+from maze.model.message import messages
 
 
 class InputKeys:
@@ -24,9 +24,11 @@ class InputKeys:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     self.pressed_key = "left"
-                if event.key == pygame.K_RIGHT:
+                elif event.key == pygame.K_RIGHT:
                     self.pressed_key = "right"
-                if event.key == pygame.K_UP:
+                elif event.key == pygame.K_UP:
                     self.pressed_key = "up"
-                if event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_DOWN:
                     self.pressed_key = "down"
+                else:
+                    messages.add_message("Invalid Key !")
