@@ -18,7 +18,7 @@ class PyGameView:
         self.size = width, height = (480, 480)
         self.background_color = (0, 50, 0)
         self.screen = pygame.display.set_mode(self.size)
-        self.font = pygame.font.SysFont("comicsansms", 72)
+        self.font = pygame.font.SysFont("comicsansms", 20)
 
         self.wall = pygame.image.load(str(config.IMG_DIR / "wall.png"))
         self.hero = pygame.image.load(str(config.IMG_DIR / "hero.png"))
