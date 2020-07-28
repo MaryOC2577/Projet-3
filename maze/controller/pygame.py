@@ -17,11 +17,11 @@ class InputKeys:
 
     def check_keys(self):
         """Check pressed keys."""
-
-        events = pygame.event.get()
-
-        for event in events:
-            if event.type == pygame.KEYDOWN:
+        self.pressed_key = ""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.pressed_key = "exit"
+            elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     self.pressed_key = "left"
                 elif event.key == pygame.K_RIGHT:

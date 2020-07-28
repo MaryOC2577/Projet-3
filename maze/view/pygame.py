@@ -15,7 +15,7 @@ class PyGameView:
 
         pygame.init()
 
-        self.size = width, height = (480, 480)
+        self.size = width, height = (480, (480 + 32))
         self.background_color = (0, 50, 0)
         self.screen = pygame.display.set_mode(self.size)
         self.font = pygame.font.SysFont("comicsansms", 20)
@@ -30,6 +30,8 @@ class PyGameView:
     def display(self, maze):
         """Main method."""
         self.display_maze(maze)
+        self.display_messages(maze)
+        pygame.display.flip()
 
     def display_maze(self, maze):
         """Display the maze."""
@@ -70,20 +72,13 @@ class PyGameView:
                             self.screen.blit(self.needle, pygame_position)
                         # self.screen.blit(self.  +
                         # items_names[items_positions.index(position)],pygame_position)
-        pygame.display.flip()
-
-        while 1:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
 
     def display_messages(self, maze):
         """Display the messages."""
         for message in maze.messages:
             text = self.font.render(message, True, (0, 128, 0))
             self.screen.blit(
-                text, (20, 448),
+                text, (20, 480),
             )
-            pygame.display.flip()
             # afficher le message en bas de la fenêtre pendant 2 secondes
         maze.messages.clear()
