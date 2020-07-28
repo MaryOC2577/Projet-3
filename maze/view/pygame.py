@@ -27,6 +27,8 @@ class PyGameView:
         self.needle = pygame.image.load(str(config.IMG_DIR / "needle.png"))
         self.tube = pygame.image.load(str(config.IMG_DIR / "tube.png"))
 
+        self.clock = pygame.time.Clock()
+
     def display(self, maze):
         """Main method."""
         self.display_maze(maze)
@@ -70,15 +72,15 @@ class PyGameView:
                             == "needle"
                         ):
                             self.screen.blit(self.needle, pygame_position)
-                        # self.screen.blit(self.  +
-                        # items_names[items_positions.index(position)],pygame_position)
 
     def display_messages(self, maze):
         """Display the messages."""
         for message in maze.messages:
-            text = self.font.render(message, True, (0, 128, 0))
-            self.screen.blit(
-                text, (20, 480),
-            )
-            # afficher le message en bas de la fenêtre pendant 2 secondes
+            text = self.font.render(message, True, (150, 50, 50))
+            self.clock.tick(30)
+            if pygame.time.get_ticks() > 200:
+                self.screen.blit(
+                    text, (20, 480),
+                )
+                pygame.time.wait(2000)
         maze.messages.clear()
