@@ -20,5 +20,9 @@ class Messages:
         """Clear."""
         self.messages = []
 
+    def exists(self):
+        """Return true if there is a message."""
+        return bool(self.messages)
+
 
 messages = Messages()
