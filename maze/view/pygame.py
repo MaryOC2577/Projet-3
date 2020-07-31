@@ -77,23 +77,14 @@ class PyGameView:
 
     def display_messages(self, maze):
         """Display the messages."""
-        current_time = 0
-        message_time = 0
+        custom_event = pygame.USEREVENT
+
         for message in maze.messages:
-            if maze.messages.exists() is True:
-                message_time = pygame.time.get_ticks()
+            pygame.time.set_timer(custom_event, 2000)
             text = self.font.render(message, True, (200, 50, 50))
-            self.screen.blit(text, (20, 480))
 
-            current_time = pygame.time.get_ticks()
-
-            timer = current_time - message_time
-
-            print(
-                f"current time: {current_time}  message time: {message_time}  timer: {timer}"
-            )
-            while timer < 2000 and timer >= 0:
-                self.screen.blit(text, (20, 480))
-                timer = 2000
+            for event in pygame.event.get():
+                if event.type == custom_event:
+                    self.screen.blit(text, (20, 480))
 
         maze.messages.clear()
