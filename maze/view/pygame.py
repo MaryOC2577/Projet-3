@@ -1,7 +1,5 @@
 """Pygame view."""
 
-import sys
-import time
 
 import pygame
 
@@ -29,9 +27,12 @@ class PyGameView:
         self.tube = pygame.image.load(str(config.IMG_DIR / "tube.png"))
 
         self.clock = pygame.time.Clock()
+        self.timer_event = pygame.USEREVENT
+        pygame.time.set_timer(self.timer_event, 2000)
 
     def display(self, maze):
         """Main method."""
+
         self.display_maze(maze)
         self.display_messages(maze)
         pygame.display.flip()
@@ -77,14 +78,10 @@ class PyGameView:
 
     def display_messages(self, maze):
         """Display the messages."""
-        custom_event = pygame.USEREVENT
 
-        for message in maze.messages:
-            pygame.time.set_timer(custom_event, 2000)
-            text = self.font.render(message, True, (200, 50, 50))
-
-            for event in pygame.event.get():
-                if event.type == custom_event:
+        for event in pygame.event.get():
+            if event.type == self.timer_event:
+                for message in maze.messages:
+                    text = self.font.render(message, True, (250, 50, 50))
                     self.screen.blit(text, (20, 480))
-
         maze.messages.clear()
