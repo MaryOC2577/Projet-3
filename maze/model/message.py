@@ -6,23 +6,21 @@ class Messages:
 
     def __init__(self):
         """Init."""
-        self.messages = []
+        self.message = ""
 
-    def __iter__(self):
-        for message in self.messages:
-            yield message
-
-    def add_message(self, message):
+    def set_message(self, message):
         """Add."""
-        self.messages.append(message)
+        self.message = message
 
-    def clear(self):
-        """Clear."""
-        self.messages = []
+    def get_message(self):
+        """Get and clear the messages."""
+        msg = self.message
+        self.message = ""
+        return msg
 
     def exists(self):
         """Return true if there is a message."""
-        return bool(self.messages)
+        return bool(self.message)
 
 
 messages = Messages()

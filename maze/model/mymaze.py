@@ -68,7 +68,7 @@ class MyMaze:
         items_name = [item.name for item in self.items]
         if self.hero.position in items_positions:
             self.hero.inventory.append("*")
-            self.messages.add_message(
+            self.messages.set_message(
                 "Hero pick the "
                 + items_name[items_positions.index(self.hero.position)]
                 + ".",
@@ -79,10 +79,10 @@ class MyMaze:
         """Inventory complete."""
         if self.hero.position == self.guardian:
             if self.hero.inventory == ["*", "*", "*"]:
-                self.messages.add_message("You win !")
+                self.messages.set_message("You win !")
                 self.exit_maze()
             else:
-                self.messages.add_message("You loose !")
+                self.messages.set_message("You loose !")
                 self.exit_maze()
 
     def exit_maze(self):

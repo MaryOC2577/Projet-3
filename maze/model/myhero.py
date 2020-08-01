@@ -26,7 +26,7 @@ class MyHero:
             new_position = x, y + 1
         if new_position not in self.maze.paths:
             if new_position in self.maze.walls:
-                messages.add_message("Hero can't move in a wall !")
+                messages.set_message("Hero can't move in a wall !")
             return False
         self.position = new_position
         return True
