@@ -31,4 +31,4 @@ class InputKeys:
                 elif event.key == pygame.K_DOWN:
                     self.pressed_key = "down"
                 else:
-                    messages.add_message("Invalid Key !")
+                    messages.set_message("Invalid Key !")

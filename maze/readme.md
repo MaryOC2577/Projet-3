@@ -1,18 +1,20 @@
-Capture d'écran du jeu
+![image](./data/img/maze.png)
 
-<h1>Projet 3 - Aidez MacGyver à s'échapper !</h1>
+<h1>Project 3 - Maze - Help MacGyver</h1>
+Help MacGyver get out of the maze by collecting items to confront the Guardian.
 
-<p>Aidez MacGyver à sortir du labyrinthe en rammassant les objets pour qu'il affronte le gardien.</P>
+<u><b>Maze on GitHub</b></u><br>
+<a href="https://github.com/MaryOC2577/Projet-3.git">https://github.com/MaryOC2577/Projet-3.git</a>
 
-<h2>Lien vers le dépôt distant</h2>
+<u><b>Game controls</b></u><br>
+Use arrow keys to move MacGyver.
 
-<h2>Commandes</h2>
-Pour déplacer MacGyver utiliser les touche fléchées.
+<u><b>Python version 3.8.2</b></u>
 
-<h2>Python version</h2>
+<u><b>Pygame version 1.9.6</b></u>
 
-<h2>PYgame version</h2>
+<u><b>Visual Studio Code 1.47.3</b></u>
 
-<h2>Visual Studio Code</h2>
-
-<h2>Contact</h2>
+<u><b>Contact author</b></u><br>
+Maryline<br>
+<a href="marybot@free.fr">marybot@free.fr</a>
