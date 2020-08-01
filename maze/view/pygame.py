@@ -27,7 +27,7 @@ class PyGameView:
         self.tube = pygame.image.load(str(config.IMG_DIR / "tube.png"))
 
         self.clock = pygame.time.Clock()
-        pygame.time.set_timer(pygame.USEREVENT + 1, 2000)
+        self.timer = 2000
 
     def display(self, maze):
         """Main method."""
@@ -81,6 +81,7 @@ class PyGameView:
             text = self.font.render(
                 maze.messages.get_message(), True, (250, 50, 50)
             )
-            for event in pygame.event.get():
-                if event.type == pygame.USEREVENT + 1:
-                    self.screen.blit(text, (20, 480))
+            timer = pygame.time.get_ticks() - self.timer
+            if timer < self.timer and timer < 0:
+                self.screen.blit(text, (20, 480))
+
