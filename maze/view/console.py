@@ -1,5 +1,6 @@
 """CLI view."""
 
+import time
 from os import system
 
 
@@ -56,3 +57,7 @@ class CliView:
         for message in maze.messages:
             print(message)
         maze.messages.clear()
+
+    def exit(self):
+        """Exit."""
+        time.sleep(2)

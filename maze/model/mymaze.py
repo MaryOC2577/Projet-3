@@ -75,22 +75,22 @@ class MyMaze:
             )
             del self.items[items_positions.index(self.hero.position)]
 
-    def check_guardian(self):
+    def check_guardian(self, view):
         """Inventory complete."""
         if self.hero.position == self.guardian:
             if self.hero.inventory == ["*", "*", "*"]:
                 self.messages.set_message("You win !")
-                self.exit_maze()
             else:
                 self.messages.set_message("You loose !")
-                self.exit_maze()
+            self.exit_maze(view)
 
-    def exit_maze(self):
+    def exit_maze(self, view):
         """Leave the maze."""
+        view.exit()
         sys.exit()
 
-    def update(self, pressed_key):
+    def update(self, pressed_key, view):
         """Update hero postion."""
         self.hero.moves(pressed_key)
         self.check_inventory()
-        self.check_guardian()
+        self.check_guardian(view)

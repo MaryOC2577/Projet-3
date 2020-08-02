@@ -11,3 +11,5 @@ LEVEL1 = DATA_DIR / "maze1.txt"
 IMG_DIR = DATA_DIR / "img"
 
 SPRITE_SIZE = 32
+
+FRAMES_PER_SECOND = 30

@@ -24,4 +24,5 @@ class Software:
         while self.keys.pressed_key != "exit":
             self.view.display(self.maze)
             self.keys.check_keys()
-            self.maze.update(self.keys.pressed_key)
+            self.maze.update(self.keys.pressed_key, self.view)
+

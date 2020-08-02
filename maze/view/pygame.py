@@ -27,7 +27,8 @@ class PyGameView:
         self.tube = pygame.image.load(str(config.IMG_DIR / "tube.png"))
 
         self.clock = pygame.time.Clock()
-        self.timer = 2000
+        self.timer = 0
+        self.message = ""
 
     def display(self, maze):
         """Main method."""
@@ -35,7 +36,7 @@ class PyGameView:
         self.display_maze(maze)
         self.display_messages(maze)
         pygame.display.flip()
-        self.clock.tick(30)
+        self.clock.tick(config.FRAMES_PER_SECOND)
 
     def display_maze(self, maze):
         """Display the maze."""
@@ -77,11 +78,18 @@ class PyGameView:
 
     def display_messages(self, maze):
         """Display the messages."""
-        if maze.messages.exists() is True:
-            text = self.font.render(
-                maze.messages.get_message(), True, (250, 50, 50)
-            )
-            timer = pygame.time.get_ticks() - self.timer
-            if timer < self.timer and timer < 0:
-                self.screen.blit(text, (20, 480))
+        if self.timer > config.FRAMES_PER_SECOND or maze.messages.exists():
+            self.timer = 0
+            self.message = maze.messages.get_message()
+        else:
+            self.timer += 1
+        text = self.font.render(self.message, True, (250, 50, 50))
 
+        self.screen.blit(text, (20, 480))
+
+    def exit(self, maze):
+        """Exit."""
+
+        pygame.time.wait(2000)
+
+        pygame.quit()
