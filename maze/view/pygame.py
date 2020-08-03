@@ -90,6 +90,6 @@ class PyGameView:
     def exit(self, maze):
         """Exit."""
 
+        self.display_messages(maze)
         pygame.time.wait(2000)
-
         pygame.quit()

@@ -86,7 +86,7 @@ class MyMaze:
 
     def exit_maze(self, view):
         """Leave the maze."""
-        view.exit()
+        view.exit(self)
         sys.exit()
 
     def update(self, pressed_key, view):
