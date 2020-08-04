@@ -3,8 +3,9 @@
 from maze.model.mymaze import MyMaze
 
 
-from maze.view.pygame import PyGameView
-from maze.controller.pygame import InputKeys
+# from maze.view.pygame import PyGameView
+
+# from maze.controller.pygame import InputKeys
 
 # from maze.view.console import CliView
 # from maze.controller.console import InputKeys
@@ -13,11 +14,11 @@ from maze.controller.pygame import InputKeys
 class Software:
     """Holds the main loop."""
 
-    def __init__(self):
+    def __init__(self, controller, view):
         """Initialized software."""
         self.maze = MyMaze()
-        self.view = PyGameView()
-        self.keys = InputKeys()
+        self.view = view
+        self.keys = controller
 
     def run_maze(self):
         """Main loop of the maze."""

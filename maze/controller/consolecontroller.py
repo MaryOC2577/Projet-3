@@ -3,7 +3,7 @@
 from maze.model.message import messages
 
 
-class InputKeys:
+class InputKeysCli:
     """Check input keys."""
 
     def __init__(self):
@@ -21,7 +21,7 @@ class InputKeys:
         }
         key = input().lower()
         if key not in possible_keys:
-            messages.add_message("Invalid key !")
+            messages.set_message("Invalid key !")
             self.pressed_key = ""
             return
         self.pressed_key = possible_keys[key]

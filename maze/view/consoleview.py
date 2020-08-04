@@ -54,9 +54,7 @@ class CliView:
 
     def display_messages(self, maze):
         """Display the messages."""
-        for message in maze.messages:
-            print(message)
-        maze.messages.clear()
+        print(maze.messages)
 
     def exit(self):
         """Exit."""

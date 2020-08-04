@@ -5,7 +5,7 @@ import pygame
 from maze.model.message import messages
 
 
-class InputKeys:
+class InputKeysGame:
     """Check input keys."""
 
     def __init__(self):
