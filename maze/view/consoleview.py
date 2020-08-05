@@ -3,6 +3,8 @@
 import time
 from os import system
 
+from maze.model.message import messages
+
 
 class CliView:
     """View in console mode."""
@@ -15,7 +17,7 @@ class CliView:
         system("cls")
         self.commands()
         self.display_maze(maze)
-        self.display_messages(maze)
+        self.display_messages()
 
     def commands(self):
         """Display controls."""
@@ -52,9 +54,9 @@ class CliView:
                         print(".", end="")
             print()
 
-    def display_messages(self, maze):
+    def display_messages(self):
         """Display the messages."""
-        print(maze.messages)
+        print(messages.get_message())
 
     def exit(self):
         """Exit."""
