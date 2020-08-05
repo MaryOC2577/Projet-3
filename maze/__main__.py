@@ -16,4 +16,3 @@ else:
     controller, view = modes[mode]
     application = Software(controller(), view())
     application.run_maze()
-
