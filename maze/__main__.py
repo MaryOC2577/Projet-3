@@ -17,5 +17,3 @@ else:
     application = Software(controller(), view())
     application.run_maze()
 
-# application = Software()
-# application.run_maze()
