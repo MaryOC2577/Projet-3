@@ -14,7 +14,10 @@ class PyGameView:
 
         pygame.init()
 
-        self.size = width, height = (480, (480 + 32))
+        self.size = (
+            config.NUMBER_BOX * config.SPRITE_SIZE,
+            config.NUMBER_BOX * config.SPRITE_SIZE + config.SPRITE_SIZE,
+        )
         self.background_color = (0, 50, 0)
         self.screen = pygame.display.set_mode(self.size)
         self.font = pygame.font.SysFont("comicsansms", 20)
