@@ -1,9 +1,11 @@
 """CLI view."""
 
 import time
+
 from os import system
 
 from maze.model.message import messages
+from maze.config import FRAMES_PER_SECOND
 
 
 class CliView:
@@ -58,6 +60,6 @@ class CliView:
         """Display the messages."""
         print(messages.get_message())
 
-    def exit(self):
+    def exit(self, maze):
         """Exit."""
         time.sleep(2)

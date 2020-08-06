@@ -3,9 +3,6 @@
 from maze.model.mymaze import MyMaze
 
 
-# from maze.view.pygame import PyGameView
-
-
 class Software:
     """Holds the main loop."""
 
