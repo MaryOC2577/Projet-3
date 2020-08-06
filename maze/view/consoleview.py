@@ -62,4 +62,5 @@ class CliView:
 
     def exit(self, maze):
         """Exit."""
+        self.display(maze)
         time.sleep(2)
