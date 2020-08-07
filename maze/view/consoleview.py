@@ -11,10 +11,10 @@ class CliView:
     """View in console mode."""
 
     def __init__(self):
-        """Initialized."""
+        """Initialize Cliview."""
 
     def display(self, maze):
-        """Main method."""
+        """Display method."""
         system("cls")
         self.commands()
         self.display_maze(maze)

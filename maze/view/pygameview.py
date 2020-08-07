@@ -32,7 +32,7 @@ class PyGameView:
         self.message = ""
 
     def display(self, maze):
-        """Main method."""
+        """Display method."""
         self.display_maze(maze)
         self.display_messages(maze)
         pygame.display.flip()
