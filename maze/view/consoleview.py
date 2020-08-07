@@ -5,7 +5,6 @@ import time
 from os import system
 
 from maze.model.message import messages
-from maze.config import FRAMES_PER_SECOND
 
 
 class CliView:

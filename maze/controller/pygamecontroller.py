@@ -9,8 +9,7 @@ class InputKeysGame:
     """Check input keys."""
 
     def __init__(self):
-        """Init keys."""
-
+        """Initialize keys."""
         pygame.init()
 
         self.pressed_key = ""

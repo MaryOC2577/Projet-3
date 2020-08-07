@@ -9,8 +9,7 @@ class PyGameView:
     """View with pygame."""
 
     def __init__(self):
-        """Initialized."""
-
+        """Initialize Pygame view."""
         pygame.init()
 
         self.size = (
@@ -34,7 +33,6 @@ class PyGameView:
 
     def display(self, maze):
         """Main method."""
-
         self.display_maze(maze)
         self.display_messages(maze)
         pygame.display.flip()
@@ -42,7 +40,6 @@ class PyGameView:
 
     def display_maze(self, maze):
         """Display the maze."""
-
         self.screen.fill(self.background_color)
 
         for index_y in range(maze.height + 1):

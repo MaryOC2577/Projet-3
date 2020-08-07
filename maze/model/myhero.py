@@ -7,7 +7,7 @@ class MyHero:
     """Create a hero."""
 
     def __init__(self, maze):
-        """Constructor Hero."""
+        """Build Hero."""
         self.maze = maze
         self.position = ()
         self.inventory = []

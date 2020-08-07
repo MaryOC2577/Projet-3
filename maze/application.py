@@ -7,13 +7,13 @@ class Software:
     """Holds the main loop."""
 
     def __init__(self, controller, view):
-        """Initialized software."""
+        """Initialize class software."""
         self.maze = MyMaze()
         self.view = view
         self.keys = controller
 
     def run_maze(self):
-        """Main loop of the maze."""
+        """Maze loop."""
         while self.keys.pressed_key != "exit":
             self.view.display(self.maze)
             self.keys.check_keys()

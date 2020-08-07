@@ -25,7 +25,7 @@ class MyMaze:
         self.set_items()
 
     def init_maze(self):
-        """Initialization of the maze."""
+        """Initialize of the maze."""
         index_x = index_y = 0
         with LEVEL1.open("r") as file:
             content = file.readlines()
