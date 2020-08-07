@@ -1,13 +1,15 @@
 """Main file."""
 
 from maze.application import Software
-from maze.controller import consolecontroller, pygamecontroller
-from maze.view import consoleview, pygameview
 
+from maze.controller.console import InputKeysCli
+from maze.controller.pygame import InputKeysGame
+from maze.view.console import CliView
+from maze.view.pygame import PyGameView
 
 modes = {
-    "console": (consolecontroller.InputKeysCli, consoleview.CliView),
-    "pygame": (pygamecontroller.InputKeysGame, pygameview.PyGameView),
+    "console": (InputKeysCli, CliView),
+    "pygame": (InputKeysGame, PyGameView),
 }
 mode = input("Choose mode (console / pygame) : ")
 if mode not in modes:
