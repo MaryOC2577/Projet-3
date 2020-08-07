@@ -1,6 +1,5 @@
 """Pygame view."""
 
-
 import pygame
 
 from maze import config

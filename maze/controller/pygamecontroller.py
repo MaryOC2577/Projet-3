@@ -32,3 +32,4 @@ class InputKeysGame:
                     self.pressed_key = "down"
                 else:
                     messages.set_message("Invalid Key !")
+

@@ -15,15 +15,15 @@ class MyHero:
     def moves(self, move):
         """Hero moves."""
         new_position = ()
-        x, y = self.position
+        pos_x, pos_y = self.position
         if move == "left":
-            new_position = x - 1, y
+            new_position = pos_x - 1, pos_y
         if move == "right":
-            new_position = x + 1, y
+            new_position = pos_x + 1, pos_y
         if move == "up":
-            new_position = x, y - 1
+            new_position = pos_x, pos_y - 1
         if move == "down":
-            new_position = x, y + 1
+            new_position = pos_x, pos_y + 1
         if new_position not in self.maze.paths:
             if new_position in self.maze.walls:
                 messages.set_message("Hero can't move in a wall !")
